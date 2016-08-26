@@ -49,6 +49,7 @@ public class EntityMatcher<T> extends TypeSafeMatcher<T> {
   private final T expected;
   private final String[] fieldNames;
   private final List<InvalidProperty> invalidProperties;
+
   private EntityMatcher( T expected, MatcherType matcherType, String... fieldNames ) {
     this.expected = expected;
     if ( matcherType.equals( MatcherType.INCLUDE_NAMED_FIELDS ) ) {
