@@ -1,4 +1,4 @@
-package com.opitzconsulting.entitymatcher;
+package com.opitzconsulting.hamcrest.entitymatcher;
 
 import com.opitzconsulting.utils.ReflectionUtils;
 import org.apache.commons.lang3.ObjectUtils;

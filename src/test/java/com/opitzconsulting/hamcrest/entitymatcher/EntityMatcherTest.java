@@ -1,8 +1,8 @@
-package com.opitzconsulting.entitymatcher;
+package com.opitzconsulting.hamcrest.entitymatcher;
 
 import org.junit.Test;
 
-import static com.opitzconsulting.entitymatcher.EntityMatcher.*;
+import static com.opitzconsulting.hamcrest.entitymatcher.EntityMatcher.*;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertThat;

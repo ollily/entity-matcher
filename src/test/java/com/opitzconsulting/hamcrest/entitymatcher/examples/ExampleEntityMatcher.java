@@ -1,9 +1,9 @@
-package com.opitzconsulting.entitymatcher.examples;
+package com.opitzconsulting.hamcrest.entitymatcher.examples;
 
-import com.opitzconsulting.entitymatcher.Person;
+import com.opitzconsulting.hamcrest.entitymatcher.Person;
 import org.junit.Test;
 
-import static com.opitzconsulting.entitymatcher.EntityMatcher.matchesAllProperties;
+import static com.opitzconsulting.hamcrest.entitymatcher.EntityMatcher.matchesAllProperties;
 import static org.junit.Assert.assertThat;
 
 /**

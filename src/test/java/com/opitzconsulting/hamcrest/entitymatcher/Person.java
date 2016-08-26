@@ -1,4 +1,4 @@
-package com.opitzconsulting.entitymatcher;
+package com.opitzconsulting.hamcrest.entitymatcher;
 
 public class Person {
 

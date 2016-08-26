@@ -1,6 +1,6 @@
-package com.opitzconsulting.entitymatcher.examples;
+package com.opitzconsulting.hamcrest.entitymatcher.examples;
 
-import com.opitzconsulting.entitymatcher.Person;
+import com.opitzconsulting.hamcrest.entitymatcher.Person;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
