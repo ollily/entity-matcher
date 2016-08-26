@@ -8,16 +8,164 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <prerequisites>
-        <maven>3.0.4</maven>
-    </prerequisites>
+    <!-- project metadata -->
+    <name>Entity-Matcher Project</name>
+    <description>Hamcrest Entity Matcher</description>
+    <url>https://github.com/opitzconsulting/entity-matcher</url>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+    <!-- minimum maven version -->
+   <prerequisites>
+       <maven>3.2.0</maven>
+   </prerequisites>
+
+   <!-- project settings -->
+   <properties>
+       <!-- java language level -->
+       <maven.compiler.source>1.8</maven.compiler.source>
+       <maven.compiler.target>1.8</maven.compiler.target>
+
+       <!-- source encoding -->
+       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+       <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
     </properties>
 
+    <!-- contributors -->
+    <developers>
+        <developer>
+            <id>stefanlack</id>
+            <name>Stefan Lack</name>
+            <email>stefanlack@googlemail.com</email>
+        </developer>
+    </developers>
+
+    <!-- source code management -->
+    <scm>
+        <connection>scm:git@github.com:opitzconsulting/entity-matcher.git</connection>
+        <developerConnection>scm:git@github.com:opitzconsulting/entity-matcher.git</developerConnection>
+        <url>git@github.com:opitzconsulting/entity-matcher.git</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <!-- bug tracker -->
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/opitzconsulting/entity-matcher/issues</url>
+    </issueManagement>
+
+    <!-- release and snapshot repository -->
+        <distributionManagement>
+            <snapshotRepository>
+                <id>ossrh</id>
+                <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            </snapshotRepository>
+            <repository>
+                <id>ossrh</id>
+                <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            </repository>
+        </distributionManagement>
+
+        <!-- project license -->
+        <licenses>
+            <license>
+                <name>The Apache Software License, Version 2.0</name>
+                <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+                <distribution>repo</distribution>
+            </license>
+        </licenses>
+        <build>
+               <!-- plugin versions for all submodules -->
+               <pluginManagement>
+                   <plugins>
+                       <plugin>
+                           <groupId>org.apache.maven.plugins</groupId>
+                           <artifactId>maven-clean-plugin</artifactId>
+                           <version>2.6.1</version>
+                       </plugin>
+                       <plugin>
+                           <groupId>org.apache.maven.plugins</groupId>
+                           <artifactId>maven-compiler-plugin</artifactId>
+                           <version>3.2</version>
+                       </plugin>
+                       <plugin>
+                           <groupId>org.apache.maven.plugins</groupId>
+                           <artifactId>maven-deploy-plugin</artifactId>
+                           <version>2.8.2</version>
+                       </plugin>
+                       <plugin>
+                           <groupId>org.apache.maven.plugins</groupId>
+                           <artifactId>maven-gpg-plugin</artifactId>
+                           <version>1.5</version>
+                       </plugin>
+                       <plugin>
+                           <groupId>org.apache.maven.plugins</groupId>
+                           <artifactId>maven-install-plugin</artifactId>
+                           <version>2.5.2</version>
+                       </plugin>
+                       <plugin>
+                           <groupId>org.apache.maven.plugins</groupId>
+                           <artifactId>maven-jar-plugin</artifactId>
+                           <version>2.5</version>
+                       </plugin>
+                       <plugin>
+                           <groupId>org.apache.maven.plugins</groupId>
+                           <artifactId>maven-javadoc-plugin</artifactId>
+                           <version>2.10.1</version>
+                       </plugin>
+                       <plugin>
+                           <groupId>org.apache.maven.plugins</groupId>
+                           <artifactId>maven-release-plugin</artifactId>
+                           <version>2.5.1</version>
+                       </plugin>
+                       <plugin>
+                           <groupId>org.apache.maven.plugins</groupId>
+                           <artifactId>maven-resources-plugin</artifactId>
+                           <version>2.7</version>
+                       </plugin>
+                       <plugin>
+                           <groupId>org.apache.maven.plugins</groupId>
+                           <artifactId>maven-source-plugin</artifactId>
+                           <version>2.4</version>
+                       </plugin>
+                       <plugin>
+                           <groupId>org.apache.maven.plugins</groupId>
+                           <artifactId>maven-surefire-plugin</artifactId>
+                           <version>2.18</version>
+                       </plugin>
+                       <plugin>
+                           <groupId>org.sonatype.plugins</groupId>
+                           <artifactId>nexus-staging-maven-plugin</artifactId>
+                           <version>1.6.5</version>
+                       </plugin>
+                   </plugins>
+               </pluginManagement>
+               <plugins>
+                         <!-- release configuration for maven central -->
+                         <plugin>
+                             <groupId>org.apache.maven.plugins</groupId>
+                             <artifactId>maven-release-plugin</artifactId>
+                             <configuration>
+                                 <mavenExecutorId>forked-path</mavenExecutorId>
+                                 <autoVersionSubmodules>true</autoVersionSubmodules>
+                                 <useReleaseProfile>false</useReleaseProfile>
+                                 <releaseProfiles>release</releaseProfiles>
+                                 <goals>deploy nexus-staging:release</goals>
+                                 <tagNameFormat>v@{project.version}</tagNameFormat>
+                             </configuration>
+                         </plugin>
+                         <!-- sonatype plugin for closing releases -->
+                         <plugin>
+                             <groupId>org.sonatype.plugins</groupId>
+                             <artifactId>nexus-staging-maven-plugin</artifactId>
+                             <extensions>true</extensions>
+                             <configuration>
+                                 <serverId>ossrh</serverId>
+                                 <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                                 <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                             </configuration>
+                         </plugin>
+                     </plugins>
+                 </build>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -48,5 +196,56 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <profiles>
+       <!-- profile activated and used by maven-release-plugin -->
+       <profile>
+           <id>release</id>
+           <build>
+               <plugins>
+                   <!-- sign all artifacts with gpg plugin -->
+                   <plugin>
+                       <groupId>org.apache.maven.plugins</groupId>
+                       <artifactId>maven-gpg-plugin</artifactId>
+                       <executions>
+                           <execution>
+                               <id>sign-artifacts</id>
+                               <phase>verify</phase>
+                               <goals>
+                                   <goal>sign</goal>
+                               </goals>
+                           </execution>
+                       </executions>
+                   </plugin>
+                   <!-- create source jars for all artifacts -->
+                   <plugin>
+                       <groupId>org.apache.maven.plugins</groupId>
+                       <artifactId>maven-source-plugin</artifactId>
+                       <executions>
+                           <execution>
+                               <id>attach-sources</id>
+                               <goals>
+                                   <goal>jar</goal>
+                               </goals>
+                           </execution>
+                       </executions>
+                   </plugin>
+                   <!-- create javadoc jars for all artifacts -->
+                   <plugin>
+                       <groupId>org.apache.maven.plugins</groupId>
+                       <artifactId>maven-javadoc-plugin</artifactId>
+                       <executions>
+                           <execution>
+                               <id>attach-javadocs</id>
+                               <goals>
+                                  <goal>jar</goal>
+                               </goals>
+                           </execution>
+                       </executions>
+                   </plugin>
+               </plugins>
+           </build>
+       </profile>
+   </profiles>
 
 </project>
