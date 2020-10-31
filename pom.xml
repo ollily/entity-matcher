@@ -6,7 +6,7 @@
 
     <groupId>com.opitzconsulting</groupId>
     <artifactId>entity-matcher</artifactId>
-    <version>0.0.1</version>
+    <version>0.1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <!-- project metadata -->
